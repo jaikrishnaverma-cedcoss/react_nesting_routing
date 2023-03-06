@@ -1,20 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, Outlet } from "react-router-dom";
 import "./Sidebar.css";
 const Sidebar = (props: any) => {
-    // sidebar toggler
+  // sidebar toggler
   const [toggle, setToggle] = useState(true);
-  const [state,setState]=useState({loading:true,users:[]})
 
-  useEffect(()=>{
-    fetch('https://dummyjson.com/users')
-    .then(res => res.json())
-    .then(data=>{
-        state.loading=false;
-        state.users=data.users;
-        setState({...state})
-    });
-  },[])
   return (
     <>
       <header>
@@ -30,33 +20,49 @@ const Sidebar = (props: any) => {
               ></i>
             </button>
           </div>
-         <ul className="links">
-            {
-                [{link:'/name',label:'/j'}].map(x=><li className="sidebar__link"><Link to={'/name'} >{x.label}</Link></li>)
-            }
-            
-         </ul>
-
-
-
+          {/* search box */}
+          <div className={`aside__searchbox ${toggle ? "" : "hide"}`}>
+            <input
+              type="text"
+              placeholder="Search"
+              className="searchbox__inputbox"
+            />
+            <button className="searchbox__button">
+              <i className="bi bi-search"></i>
+            </button>
+          </div>
+          {/* users list */}
+          <h3 style={{ color: "white",margin:'20px 10px' }}>Users</h3>
+          <ul className="links">
+            {props.state.users &&
+              props.state.users.map((user: any, i:any) => (
+                <li className="sidebar__link">
+                  <Link to={`profile/${user.id}`}>
+                    <i className="bi bi-person-fill"></i>
+                    {user.firstName + " " + user.lastName}
+                  </Link>
+                </li>
+              ))}
+          </ul>
         </aside>
       </header>
       {/* set common body for pages */}
-      <main style={{display:'flex',width:'100vw'}}>
+      <main style={{ display: "flex", width: "100vw" }}>
         {/* to sychronize with sidebar give space */}
-        <div style={{width:'90px'}}></div>
+        <div style={{ width: "90px" }}></div>
         {/* this is the body wrapper */}
-        <div className="wrapper" >
-        {state.loading?<div className="loading__wrapper">
-            <img src="1amw.gif" style={{width:'10vw'}} alt="loader" />
-            <h3>Loading...</h3>
-            </div>  
-             :props.children}
+        <div className="wrapper">
+          {props.state.loading ? (
+            <div className="loading__wrapper">
+              <img src="../assets/1amw.gif" style={{ width: "10vw" }} alt="loader" />
+              <h3>Loading...</h3>
+            </div>
+          ) : (
+            <Outlet />
+          )}
         </div>
-        </main>
-      <footer>
-
-      </footer>
+      </main>
+      <footer></footer>
     </>
   );
 };
