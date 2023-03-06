@@ -45,7 +45,7 @@ const UpdateProfile = (props: any) => {
 
   // handle Update functionality
   const updator = () => {
-    navigate("/Updated Successfully");
+
     let sign = Object.entries(forms.validate).filter((x: any) => x[1] == false);
     if (sign.length == 0) {
       props.state.users[index] = {
@@ -53,6 +53,7 @@ const UpdateProfile = (props: any) => {
         ...forms.inputs,
       };
       props.setState({ ...props.state });
+      navigate("/Updated Successfully");
     } else alert("Please fill valid details");
   };
   if (index == -1) navigate("/Something went wrong.");
