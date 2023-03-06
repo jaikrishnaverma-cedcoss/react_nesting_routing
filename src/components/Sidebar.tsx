@@ -1,5 +1,5 @@
 import React, {useEffect, useState } from "react";
-import { Link, Outlet } from "react-router-dom";
+import { Link, NavLink, Outlet } from "react-router-dom";
 import "./Sidebar.css";
 const Sidebar = (props: any) => {
   // sidebar toggler
@@ -64,10 +64,10 @@ const Sidebar = (props: any) => {
             {users &&
               users.map((user: any, i: any) => (
                 <li className="sidebar__link" key={user.id+user.username}>
-                  <Link to={`profile/${user.id}`}>
+                  <NavLink to={`profile/${user.id}`}>
                     <i className="bi bi-person-fill"></i>
                     {user.firstName + " " + user.lastName}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
           </ul>

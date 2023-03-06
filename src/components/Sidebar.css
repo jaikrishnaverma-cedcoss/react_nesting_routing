@@ -117,7 +117,9 @@ li {
     align-items: center;
     text-decoration: none;
 }
-
+.sidebar__link a.active{
+    color: #ffa900;
+}
 .sidebar__link a i {
     margin: 0px 20px;
     font-size: 25px;
