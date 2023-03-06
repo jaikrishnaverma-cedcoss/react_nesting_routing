@@ -15,6 +15,7 @@ const UpdateProfile = (props: any) => {
     "id",
     userId
   );
+  //   onChange inputs controller
   const onChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const val = e.target.value;
@@ -42,9 +43,9 @@ const UpdateProfile = (props: any) => {
     setForms({ ...forms });
   };
 
-  // handle delete functionality
+  // handle Update functionality
   const updator = () => {
-    navigate("/Deleted Successfully");
+    navigate("/Updated Successfully");
     let sign = Object.entries(forms.validate).filter((x: any) => x[1] == false);
     if (sign.length == 0) {
       props.state.users[index] = {
@@ -66,7 +67,7 @@ const UpdateProfile = (props: any) => {
             <h2>Update Form:</h2>
             <div className="profile__details profile__details--update">
               {["firstName", "lastName", "email", "phone"].map((x, i) => (
-                <div className="profile__inputs">
+                <div className="profile__inputs" key={x}>
                   <label htmlFor={x + i}>{x}</label>
                   <input
                     onChange={onChangeInput}
