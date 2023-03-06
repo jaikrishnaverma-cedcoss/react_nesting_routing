@@ -4,19 +4,24 @@ import useQuery from '../customHook/useQuery';
 import './Profile.css'
 
 const Profile = (props:any) => {
+  // get user id from route url
   let { userId } = useParams();
   const navigate=useNavigate()
+
+  // custom hook get users details by id
   const getKeyObject=useQuery()
-  const {index , user}:any=getKeyObject(props.state.users,'id',userId) 
-  console.log(user)
-  const deletor=(i:any)=>{
-    console.log(i)
+  const {index , user}:{index:number,user:any}=getKeyObject(props.state.users,'id',userId) 
+
+  // handle delete functionality 
+  const deletor=(i:number)=>{
     if(i>-1){
-      props.state.users.splice(i,1);
+    props.state.users.splice(i,1);
     navigate('/Deleted Successfully')
     props.setState({...props.state})
     }
   }
+if(index==-1)
+navigate('/Something went wrong.')
   return (
     <>
     <div className="profile">
@@ -31,14 +36,12 @@ const Profile = (props:any) => {
           <small>Phone: {user.phone}</small>
          </div>
           <div className="profile__actions">
-          <button>Edit</button>
+          <button onClick={()=>navigate('/update/'+userId)}>Edit</button>
           <button style={{color:'red'}} onClick={()=>deletor(index)}>Delete</button>
         </div>
         </div>
-
       </div>
     </div>
-
     </>
 
   )

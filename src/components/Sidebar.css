@@ -36,7 +36,6 @@ main {
 }
 
 .toggler {
-    background-color: transparent;
     padding: 10px 20px;
     border: none;
     font-size: 20px;
@@ -98,7 +97,8 @@ main {
 }
 
 .wrapper {
-    width: -webkit-fill-available
+    width: -webkit-fill-available;
+    width: -moz-available;
 }
 
 li {

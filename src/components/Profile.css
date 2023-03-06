@@ -1,29 +1,34 @@
-.profile,.profile__actions,.indexpage
-{
+.profile,
+.profile__actions,
+.indexpage {
     display: flex;
     align-items: center;
     justify-content: center;
     width: 100%;
 }
-.indexpage{
+
+.indexpage {
     flex-direction: column;
 }
-.profile__actions{
+
+.profile__actions {
     justify-content: start;
     margin: 10px 0px;
 }
-.profile__actions button{
+
+.profile__actions button {
     margin: 5px 20px 0px 0px;
     border: none;
     font-size: 17px;
     padding: 10px;
     min-width: 80px;
     border-radius: 8px;
-    color:  rgb(111, 104, 218);
+    color: rgb(111, 104, 218);
     border: 1px solid rgba(178, 178, 178, 0.399);
     box-shadow: rgba(0, 0, 0, 0.15) 2.4px 2.4px 3.2px;
 }
-.profile__card{
+
+.profile__card {
     border-radius: 8px;
     border: 1px grey;
     display: flex;
@@ -32,12 +37,71 @@
     justify-content: center;
     padding: 20px;
 }
-.profile__card img{
+
+.profile__card img {
     max-width: 80%;
     border-radius: 8px;
     margin: 10px;
     box-shadow: rgba(9, 30, 66, 0.25) 0px 1px 1px, rgba(9, 30, 66, 0.13) 0px 0px 1px 1px;
 }
-.profile__body{
-padding: 0px 10px;
+
+.profile__body {
+    padding: 0px 10px;
 }
+
+.profile__details--update input{
+min-width:270px;
+
+}
+.profile__inputs{
+    display: flex;
+    flex-direction: column;
+}
+.profile__inputs label{
+    color: rgb(48, 48, 48);
+    font-weight: 700;
+    margin: 10px 0px;
+    font-size: 18px;
+}
+.profile__inputs input{
+    padding: 5px 10px;
+    border-radius: 5px;
+    min-height: 35px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+    box-shadow: rgba(6, 24, 44, 0.4) 0px 0px 0px 2px, rgba(6, 24, 44, 0.65) 0px 4px 6px -1px, rgba(255, 255, 255, 0.08) 0px 1px 0px inset;
+}
+.profile__card--update{
+    min-width: 80%;
+}
+.profile__actions--update{
+    justify-content: end;
+}
+.profile__actions--update button{
+    margin: 5px 0px 0px 0px;
+    background-color: rgb(131, 125, 219);
+    color: white !important;
+}
+/* .searchbox__inputbox {
+    width: 72%;
+    padding: 5px 10px;
+    border-radius: 5px;
+    min-height: 35px;
+    border: none;
+    outline: none;
+    font-size: 18px;
+}
+
+.searchbox__button {
+    width: 15%;
+    border-radius: 5px;
+    min-height: 38px;
+    font-size: 20px;
+    min-width: 38px;
+    background-color: transparent;
+    padding: 10px;
+    color: rgb(131, 125, 219);
+    ;
+    border: none;
+} */

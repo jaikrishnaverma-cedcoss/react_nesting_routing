@@ -1,9 +1,35 @@
-import React, { useState } from "react";
+import React, {useEffect, useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import "./Sidebar.css";
 const Sidebar = (props: any) => {
   // sidebar toggler
   const [toggle, setToggle] = useState(true);
+  // hold user details to filter & show
+  let [users, setUsers] = useState<any>([]);
+
+  // update users array if any changes arrives in parents user araray
+  useEffect(() => {
+    if(props.state.users)
+    users=[...props.state.users]
+    setUsers([...users]);
+  }, [props.state]);
+
+  // filter user function
+  const filterer = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const val = e.target.value.toLowerCase();
+    let arr = [];
+    if (val) {
+      arr = users.filter((user: any) => {
+        return (
+          user.firstName.toLowerCase().includes(val) ||
+          user.lastName.toLowerCase().includes(val)
+        );
+      });
+    } else {
+      arr = props.state.users;
+    }
+    setUsers([...arr]);
+  };
 
   return (
     <>
@@ -26,17 +52,18 @@ const Sidebar = (props: any) => {
               type="text"
               placeholder="Search"
               className="searchbox__inputbox"
+              onChange={filterer}
             />
             <button className="searchbox__button">
               <i className="bi bi-search"></i>
             </button>
           </div>
           {/* users list */}
-          <h3 style={{ color: "white",margin:'20px 10px' }}>Users</h3>
+          <h3 style={{ color: "white", margin: "20px 10px" }}>Users</h3>
           <ul className="links">
-            {props.state.users &&
-              props.state.users.map((user: any, i:any) => (
-                <li className="sidebar__link">
+            {users &&
+              users.map((user: any, i: any) => (
+                <li className="sidebar__link" key={user.id+user.username}>
                   <Link to={`profile/${user.id}`}>
                     <i className="bi bi-person-fill"></i>
                     {user.firstName + " " + user.lastName}
@@ -54,7 +81,11 @@ const Sidebar = (props: any) => {
         <div className="wrapper">
           {props.state.loading ? (
             <div className="loading__wrapper">
-              <img src="../assets/1amw.gif" style={{ width: "10vw" }} alt="loader" />
+              <img
+                src={process.env.PUBLIC_URL + "/1amw.gif"}
+                style={{ width: "10vw" }}
+                alt="loader"
+              />
               <h3>Loading...</h3>
             </div>
           ) : (

@@ -1,9 +1,8 @@
 const useQuery = () => {
-    // this function can return the value of rquired key with help of another key
-      const getKeyObject=(arr:any,key:any,val:any)=>{
+    // this function can return the object & index of rquired key value match on array of objects
+      const getKeyObject=(arr:any,key:string,val:string|number|undefined)=>{
         let index=-1
         let user={}
-        console.log('fusnderhook',arr,key,val)
           arr&&arr.forEach((item:any, i:number) => {
                   if ( item[key] == val) {
                     user={...item}
