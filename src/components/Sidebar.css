@@ -120,6 +120,9 @@ li {
 .sidebar__link a.active{
     color: #ffa900;
 }
+.sidebar__link a:hover{
+color: aqua !important;
+}
 .sidebar__link a i {
     margin: 0px 20px;
     font-size: 25px;
